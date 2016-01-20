@@ -84,9 +84,9 @@
     NSInteger hour = (int)duration / 3600;
     NSString *durationString;
     if (hour > 0) {
-        durationString = [NSString stringWithFormat:@"%luhour %lumin", hour, min];
+        durationString = [NSString stringWithFormat:@"%luhour %lumin", (long)hour, (long)min];
     }else{
-        durationString = [NSString stringWithFormat:@"%lumin", min];
+        durationString = [NSString stringWithFormat:@"%lumin", (long)min];
     }
     return durationString;
 }

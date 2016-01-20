@@ -13,6 +13,9 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7J-xk-5P3">
                     <rect key="frame" x="15" y="2" width="213" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="azA-Gq-BkB"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -31,7 +34,6 @@
             <constraints>
                 <constraint firstItem="u7J-xk-5P3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="3lf-eR-Zlj"/>
                 <constraint firstItem="u7J-xk-5P3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="C1c-e2-pI3"/>
-                <constraint firstItem="u7J-xk-5P3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="FaK-5F-eYZ"/>
                 <constraint firstItem="SGC-EK-mKa" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="jLY-dj-8Bg"/>
                 <constraint firstAttribute="trailing" secondItem="SGC-EK-mKa" secondAttribute="trailing" constant="15" id="p08-wg-n4q"/>
                 <constraint firstItem="SGC-EK-mKa" firstAttribute="leading" secondItem="u7J-xk-5P3" secondAttribute="trailing" constant="28" id="x5g-lW-hic"/>

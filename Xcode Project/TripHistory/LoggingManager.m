@@ -31,7 +31,7 @@ NSString *const kLoggingStateKey = @"kLoggingStateKey";
 double const MOVEMENT_THRESHOLD = 10.0;    // movement below 10 meters won't detected
 double const TIME_THRESHOLD = 15.0;        // event older than 15s won't detected
 double const SPEED_THRESHOLD = 4.47;       // speed over 4.47 meters marks trip continuation (10mph)
-double const END_TRIP_TIME_LIMIT = 60.0;   // idle over 60 seconds signals the end of trip
+double const END_TRIP_TIME_LIMIT = 5.0;   // idle over 60 seconds signals the end of trip
 
 static Trip *CurrentTrip;   // static variable keep track of trip information
 
@@ -159,6 +159,7 @@ static Trip *CurrentTrip;   // static variable keep track of trip information
         NSLog(@"Save Trip failed - %@", saveError.localizedDescription);
         return NO;
     }
+    NSLog(@">>> Trip logged!");
     return YES;
 }
 
@@ -279,6 +280,10 @@ static Trip *CurrentTrip;   // static variable keep track of trip information
         }else{
             // If user has already 'logged in', start location tracking if possible
             [[LoggingManager sharedManager] startLocationUpdating];
+        }
+    }else if (status == kCLAuthorizationStatusDenied) {
+        if (isTravelling) {
+            [[LoggingManager sharedManager] stopLocationUpdating];
         }
     }
     // Notify receivers for UI updates
