@@ -13,11 +13,19 @@
 #import "Address.h"
 #import "Trip.h"
 
+double const MOVEMENT_THRESHOLD = 10.0;    // movement below 10 meters won't detected
+double const TIME_THRESHOLD = 15.0;        // event older than 15s won't detected
+double const SPEED_THRESHOLD = 4.47;       // speed over 4.47 meters marks trip continuation (10mph)
+double const END_TRIP_TIME_LIMIT = 60.0;   // idle over 60 seconds signals the end of trip
+
 // Locaiton Authorization Status did change notification
 NSString *const kLocationAuthorizationStatusDidChangeNotification = @"kLocationAuthorizationStatusDidChangeNotification";
 
 // Key for storing logging on/off state in persistent storage
 NSString *const kLoggingStateKey = @"kLoggingStateKey";
+
+// static variable keep track of trip information
+static Trip *CurrentTrip;
 
 @interface LoggingManager () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager *locationManager;   // for location tracking
@@ -27,13 +35,6 @@ NSString *const kLoggingStateKey = @"kLoggingStateKey";
 @implementation LoggingManager {
     BOOL isTravelling;     // binary indicating whether user is on a trip
 }
-
-double const MOVEMENT_THRESHOLD = 10.0;    // movement below 10 meters won't detected
-double const TIME_THRESHOLD = 15.0;        // event older than 15s won't detected
-double const SPEED_THRESHOLD = 4.47;       // speed over 4.47 meters marks trip continuation (10mph)
-double const END_TRIP_TIME_LIMIT = 60.0;   // idle over 60 seconds signals the end of trip
-
-static Trip *CurrentTrip;   // static variable keep track of trip information
 
 #pragma mark - Location Tracking
 
